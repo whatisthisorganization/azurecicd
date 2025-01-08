@@ -28,3 +28,11 @@ resource "azurerm_storage_account" "sa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
+
+resource "azurerm_cognitive_account" "openai" {
+  name                = "azureaistudiotest"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  kind                = "OpenAI"
+  sku_name            = "S0"
+}

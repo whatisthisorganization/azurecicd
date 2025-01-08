@@ -60,6 +60,20 @@ jobs:
         CONTAINER_NAME: "tfstate"
       run: terraform init
 
+    - name: Import Existing Resource (Only Run Once)
+      if: always() && !contains(steps.terraform-plan.outputs.stdout, "Resource already managed")
+      working-directory: terraform
+      env:
+        ARM_SUBSCRIPTION_ID: "d55c4594-129f-44a9-ba1e-b49345abdbd8"
+        ARM_CLIENT_ID: "7d7670b5-72e3-466f-9ed0-bd520f76c095"
+        ARM_CLIENT_SECRET: "G2J8Q~qwZzMgPJKA9hUNu9l57wq5D1YV2ujdJctY"
+        ARM_TENANT_ID: "cedf37a5-fa53-4c67-96b3-85aba04f990a"
+        STORAGE_ACCOUNT_NAME: "tfststrgaccountgithubtst"
+        CONTAINER_NAME: "tfstate"
+      run: |
+        terraform import azurerm_cognitive_account.openai /subscriptions/d55c4594-129f-44a9-ba1e-b49345abdbd8/resourceGroups/example-resource-group/providers/Microsoft.CognitiveServices/accounts/azureaistudiotest
+
+
     - name: Validate Terraform
       working-directory: terraform
       run: terraform validate
@@ -75,13 +89,13 @@ jobs:
         CONTAINER_NAME: "tfstate"
       run: terraform plan
 
-    - name: Apply Terraform
-      working-directory: terraform
-      env:
-        ARM_SUBSCRIPTION_ID: "d55c4594-129f-44a9-ba1e-b49345abdbd8"
-        ARM_CLIENT_ID: "7d7670b5-72e3-466f-9ed0-bd520f76c095"
-        ARM_CLIENT_SECRET: "G2J8Q~qwZzMgPJKA9hUNu9l57wq5D1YV2ujdJctY"
-        ARM_TENANT_ID: "cedf37a5-fa53-4c67-96b3-85aba04f990a"
-        STORAGE_ACCOUNT_NAME: "tfststrgaccountgithubtst"
-        CONTAINER_NAME: "tfstate"
-      run: terraform apply -auto-approve
+    # - name: Apply Terraform
+    #   working-directory: terraform
+    #   env:
+    #     ARM_SUBSCRIPTION_ID: "d55c4594-129f-44a9-ba1e-b49345abdbd8"
+    #     ARM_CLIENT_ID: "7d7670b5-72e3-466f-9ed0-bd520f76c095"
+    #     ARM_CLIENT_SECRET: "G2J8Q~qwZzMgPJKA9hUNu9l57wq5D1YV2ujdJctY"
+    #     ARM_TENANT_ID: "cedf37a5-fa53-4c67-96b3-85aba04f990a"
+    #     STORAGE_ACCOUNT_NAME: "tfststrgaccountgithubtst"
+    #     CONTAINER_NAME: "tfstate"
+    #   run: terraform apply -auto-approve
