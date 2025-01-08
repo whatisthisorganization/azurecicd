@@ -23,7 +23,32 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Set up Terraform backend
+      run: |
+        #!/bin/bash
+        RESOURCE_GROUP_NAME="terraform-backend-rg"
+        STORAGE_ACCOUNT_NAME="tfststrgaccountgithubtest"
+        CONTAINER_NAME="tfstate"
 
+        echo "Creating resource group..."
+        az group create --name $RESOURCE_GROUP_NAME --location "East US"
+
+        echo "Creating storage account..."
+        az storage account create \
+          --name $STORAGE_ACCOUNT_NAME \
+          --resource-group $RESOURCE_GROUP_NAME \
+          --location "East US" \
+          --sku Standard_LRS
+
+        echo "Creating blob container..."
+        az storage container create \
+          --name $CONTAINER_NAME \
+          --account-name $STORAGE_ACCOUNT_NAME
+
+        echo "STORAGE_ACCOUNT_NAME=$STORAGE_ACCOUNT_NAME" >> $GITHUB_ENV
+        echo "CONTAINER_NAME=$CONTAINER_NAME" >> $GITHUB_ENV
+    
     - name: Initialize Terraform
       working-directory: terraform
       run: terraform init
