@@ -28,7 +28,7 @@ jobs:
       run: |
         #!/bin/bash
         RESOURCE_GROUP_NAME="terraform-backend-rg"
-        STORAGE_ACCOUNT_NAME="tfststrgaccountgithubtest"
+        STORAGE_ACCOUNT_NAME="tfststrgaccountgithubtst"
         CONTAINER_NAME="tfstate"
 
         echo "Creating resource group..."
