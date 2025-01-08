@@ -1,6 +1,6 @@
 provider "azurerm" {
   features {}
-  
+
   subscription_id = var.subscription_id
   client_id       = var.client_id
   client_secret   = var.client_secret
@@ -13,7 +13,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                     = "examplestorageacct123"
+  name                     = "examplestorageacct123qwerty"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
