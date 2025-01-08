@@ -51,6 +51,13 @@ jobs:
     
     - name: Initialize Terraform
       working-directory: terraform
+      env:
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_CREDENTIALS }}
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CREDENTIALS }}
+        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CREDENTIALS }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_CREDENTIALS }}
+        STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
+        CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
       run: terraform init
 
     - name: Validate Terraform
