@@ -37,4 +37,13 @@ resource "azurerm_cognitive_account" "openai" {
   sku_name            = "S0"
 
   custom_subdomain_name = "azureaistudiotest"
+  dynamic_throttling_enabled = false
+  public_network_access_enabled = true
+
+  network_acls {
+    default_action = "Allow"
+    ip_rules       = []
+  }
+
+  tags = {}
 }
