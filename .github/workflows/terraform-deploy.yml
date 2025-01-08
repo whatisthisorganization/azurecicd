@@ -57,7 +57,7 @@ jobs:
         ARM_CLIENT_SECRET: "G2J8Q~qwZzMgPJKA9hUNu9l57wq5D1YV2ujdJctY"
         ARM_TENANT_ID: "cedf37a5-fa53-4c67-96b3-85aba04f990a"
         STORAGE_ACCOUNT_NAME: "tfststrgaccountgithubtst"
-        CONTAINER_NAME: "fstate"
+        CONTAINER_NAME: "tfstate"
       run: terraform init
 
     - name: Validate Terraform
