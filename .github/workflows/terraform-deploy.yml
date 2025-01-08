@@ -52,12 +52,12 @@ jobs:
     - name: Initialize Terraform
       working-directory: terraform
       env:
-        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_CREDENTIALS }}
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CREDENTIALS }}
-        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CREDENTIALS }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_CREDENTIALS }}
-        STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
-        CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
+        ARM_SUBSCRIPTION_ID: "d55c4594-129f-44a9-ba1e-b49345abdbd8"
+        ARM_CLIENT_ID: "7d7670b5-72e3-466f-9ed0-bd520f76c095"
+        ARM_CLIENT_SECRET: "G2J8Q~qwZzMgPJKA9hUNu9l57wq5D1YV2ujdJctY"
+        ARM_TENANT_ID: "cedf37a5-fa53-4c67-96b3-85aba04f990a"
+        STORAGE_ACCOUNT_NAME: "tfststrgaccountgithubtst"
+        CONTAINER_NAME: "fstate"
       run: terraform init
 
     - name: Validate Terraform
