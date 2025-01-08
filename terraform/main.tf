@@ -35,4 +35,6 @@ resource "azurerm_cognitive_account" "openai" {
   location            = azurerm_resource_group.rg.location
   kind                = "OpenAI"
   sku_name            = "S0"
+
+  custom_subdomain_name = "azureaistudiotest"
 }
