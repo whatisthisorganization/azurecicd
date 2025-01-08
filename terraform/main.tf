@@ -54,10 +54,13 @@ resource "azurerm_cognitive_deployment" "gpt4_deployment" {
   model {
     format  = "OpenAI"
     name    = "gpt-4o"
-    version = "1"
+    version = "2024-11-20"
   }
-    sku {
-    name = "Standard"
+  sku {
+    name = "GlobalStandard"
+    capacity = 10
   }
+  dynamic_throttling_enabled = false
+  rai_policy_name            = "Microsoft.DefaultV2"
 }
 
