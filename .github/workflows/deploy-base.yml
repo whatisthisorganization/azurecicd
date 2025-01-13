@@ -56,7 +56,7 @@ jobs:
     - name: Initialize Terraform
       working-directory: terraform
       env:
-        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
