@@ -15,6 +15,9 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - name: Checkout code
@@ -58,8 +61,8 @@ jobs:
       env:
         ARM_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+        ARM_USE_OIDC: true
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
       run: terraform init
