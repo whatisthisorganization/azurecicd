@@ -44,7 +44,7 @@ jobs:
           --name $STORAGE_ACCOUNT_NAME \
           --resource-group $RESOURCE_GROUP_NAME \
           --location ${{ vars.RG_LOCATION }} \
-          --sku ${{ vars['$RG_SKU_ENV'] }}
+          --sku ${{ vars['${{ RG_SKU_ENV }}'] }}
         az storage container create \
           --name $CONTAINER_NAME \
           --account-name $STORAGE_ACCOUNT_NAME
