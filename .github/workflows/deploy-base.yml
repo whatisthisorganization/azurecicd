@@ -71,7 +71,7 @@ jobs:
     - name: Plan Terraform
       working-directory: terraform
       env:
-        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
@@ -79,14 +79,14 @@ jobs:
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
       run: terraform plan
 
-    - name: Apply Terraform
-      if: ${{ github.event.inputs.apply == 'true' }}
-      working-directory: terraform
-      env:
-        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
-        ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
-        ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
-        STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
-        CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
-      run: terraform apply -auto-approve
+    # - name: Apply Terraform
+    #   if: ${{ github.event.inputs.apply == 'true' }}
+    #   working-directory: terraform
+    #   env:
+    #     ARM_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
+    #     ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+    #     ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
+    #     ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
+    #     STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
+    #     CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
+    #   run: terraform apply -auto-approve
