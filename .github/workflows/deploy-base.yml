@@ -38,14 +38,15 @@ jobs:
         STORAGE_ACCOUNT_NAME="tfstatefile${{ vars.RG_LOCATION }}${{ inputs.environment }}"
         CONTAINER_NAME="tfstate"
         RG_SKU_ENV="RG_SKU_${{ inputs.environment }}"
-        RG_SKU_VALUE="${{ vars[RG_SKU_ENV] }}"
+        echo $RG_SKU_ENV
 
         az group create --name $RESOURCE_GROUP_NAME --location ${{ vars.RG_LOCATION }}
         az storage account create \
           --name $STORAGE_ACCOUNT_NAME \
           --resource-group $RESOURCE_GROUP_NAME \
           --location ${{ vars.RG_LOCATION }} \
-          --sku $RG_SKU_VALUE
+          --sku ${{ vars.RG_SKU_DEV }}
+
         az storage container create \
           --name $CONTAINER_NAME \
           --account-name $STORAGE_ACCOUNT_NAME
