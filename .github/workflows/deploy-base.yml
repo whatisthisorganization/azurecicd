@@ -78,7 +78,7 @@ jobs:
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
         TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
-      run: terraform plan
+      run: terraform plan -lock=false
 
     # - name: Apply Terraform
     #   if: ${{ github.event.inputs.apply == 'true' }}
