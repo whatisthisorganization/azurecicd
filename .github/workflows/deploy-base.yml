@@ -37,13 +37,15 @@ jobs:
         RESOURCE_GROUP_NAME="terraform-statefile-rg-${{ inputs.environment }}"
         STORAGE_ACCOUNT_NAME="tfstatefile${{ vars.RG_LOCATION }}${{ inputs.environment }}"
         CONTAINER_NAME="tfstate"
+        RG_SKU_VAR="RG_SKU_${{ inputs.environment }}"
+        RG_SKU=${{ vars[RG_SKU_VAR] }}
 
         az group create --name $RESOURCE_GROUP_NAME --location ${{ vars.RG_LOCATION }}
         az storage account create \
           --name $STORAGE_ACCOUNT_NAME \
           --resource-group $RESOURCE_GROUP_NAME \
           --location ${{ vars.RG_LOCATION }} \
-          --sku ${{ vars['RG_SKU_'+${{ inputs.environment }} }}
+          --sku $RG_SKU
         az storage container create \
           --name $CONTAINER_NAME \
           --account-name $STORAGE_ACCOUNT_NAME
