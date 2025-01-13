@@ -38,15 +38,13 @@ jobs:
         RESOURCE_GROUP_NAME="terraform-statefile-rg-${{ inputs.environment }}"
         STORAGE_ACCOUNT_NAME="tfstatefile${{ vars.RG_LOCATION }}${{ inputs.environment }}"
         CONTAINER_NAME="tfstate"
-        RG_SKU_ENV="RG_SKU_${{ inputs.environment }}"
-        echo $RG_SKU_ENV
 
         az group create --name $RESOURCE_GROUP_NAME --location ${{ vars.RG_LOCATION }}
         az storage account create \
           --name $STORAGE_ACCOUNT_NAME \
           --resource-group $RESOURCE_GROUP_NAME \
           --location ${{ vars.RG_LOCATION }} \
-          --sku ${{ vars.RG_SKU_DEV }}
+          --sku ${{ vars.RG_SKU }}
 
         az storage container create \
           --name $CONTAINER_NAME \
@@ -60,7 +58,7 @@ jobs:
       env:
         ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
@@ -75,7 +73,7 @@ jobs:
       env:
         ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
@@ -87,7 +85,7 @@ jobs:
       env:
         ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
