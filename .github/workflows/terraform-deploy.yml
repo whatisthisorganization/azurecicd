@@ -5,6 +5,10 @@ on:
     branches:
       - dev
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -25,6 +29,7 @@ jobs:
         client-id: ${{ vars.AZURE_CLIENT_ID }}
         tenant-id: ${{ vars.AZURE_TENANT_ID }}
         subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+        auth-type: OIDC
     
     - name: Set up Terraform backend
       run: |
