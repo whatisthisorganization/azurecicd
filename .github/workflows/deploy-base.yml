@@ -59,7 +59,7 @@ jobs:
       env:
         ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        ARM_CLIENT_SECRET: fle8Q~gt3mxpyLNA6ckPPD0yJzT2EwAR-_m-GdBE
         ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
