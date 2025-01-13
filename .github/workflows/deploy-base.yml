@@ -31,7 +31,7 @@ jobs:
       with:
         client-id: ${{ vars.ARM_CLIENT_ID }}
         tenant-id: ${{ vars.ARM_TENANT_ID }}
-        subscription-id: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        subscription-id: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
     
     - name: Set up Terraform backend
       run: |
@@ -56,7 +56,7 @@ jobs:
     - name: Initialize Terraform
       working-directory: terraform
       env:
-        ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
@@ -71,7 +71,7 @@ jobs:
     - name: Plan Terraform
       working-directory: terraform
       env:
-        ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
@@ -83,7 +83,7 @@ jobs:
       if: ${{ github.event.inputs.apply == 'true' }}
       working-directory: terraform
       env:
-        ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_SUBSCRIPTION_ID: ${{ vars.TF_VAR_SUBSCRIPTION_ID }}
         ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
         ARM_CLIENT_SECRET: ${{ vars.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
