@@ -12,13 +12,9 @@ variable "location" {
 variable "client_id" {
     default = "3dbe2792-7ac9-44e7-a0db-c906c5793077"
 }
-variable "client_secret" {
-    default = "fle8Q~gt3mxpyLNA6ckPPD0yJzT2EwAR-_m-GdBE"
-}
 variable "tenant_id" {
     default = "7c35a675-f206-43e5-85bf-7f1eccae0d20"
 }
-
 variable "SUBSCRIPTION_ID" {
   description = "Azure Subscription ID"
   type        = string
