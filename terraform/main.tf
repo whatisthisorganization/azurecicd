@@ -11,7 +11,7 @@ provider "azurerm" {
   features {}
 
   subscription_id = var.SUBSCRIPTION_ID
-  client_id       = var.client_id
+  client_id       = var.CLIENT_ID
   tenant_id       = var.tenant_id
 }
 

@@ -65,6 +65,9 @@ jobs:
         ARM_USE_OIDC: true
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
+        TF_VAR_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+        TF_VAR_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
       run: terraform init
 
     - name: Validate Terraform
@@ -81,6 +84,8 @@ jobs:
         STORAGE_ACCOUNT_NAME: ${{ env.STORAGE_ACCOUNT_NAME }}
         CONTAINER_NAME: ${{ env.CONTAINER_NAME }}
         TF_VAR_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
+        TF_VAR_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
       run: terraform plan -lock=false
 
     # - name: Apply Terraform

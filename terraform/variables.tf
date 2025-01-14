@@ -14,10 +14,9 @@ variable "tenant_id" {
     default = "7c35a675-f206-43e5-85bf-7f1eccae0d20"
 }
 
-variable "SUBSCRIPTION_ID" {
-  description = "Azure Subscription ID"
-  type        = string
-}
+variable "TENANT_ID" {}
+variable "CLIENT_ID"{}
+variable "SUBSCRIPTION_ID" {}
 
 # variable "client_id" {
 #   description = "Azure Client ID"
