@@ -20,14 +20,6 @@ resource "azurerm_resource_group" "rg" {
   location = "East US"
 }
 
-# resource "azurerm_storage_account" "sa" {
-#   name                     = "mystrgforgithubtest543"
-#   resource_group_name      = azurerm_resource_group.rg.name
-#   location                 = azurerm_resource_group.rg.location
-#   account_tier             = "Standard"
-#   account_replication_type = "LRS"
-# }
-
 module "storage_account" {
   source                                = "./modules/storage_accounts"
   resource_group_name                   = var.resource_group_name
@@ -37,38 +29,12 @@ module "storage_account" {
   account_replication_type              = "LRS"
 }
 
-resource "azurerm_cognitive_account" "openai" {
-  name                = "azureaistudiotest543"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  kind                = "OpenAI"
-  sku_name            = "S0"
-
-  custom_subdomain_name = "azureaistudiotest543"
-  dynamic_throttling_enabled = false
-  public_network_access_enabled = true
-
-  network_acls {
-    default_action = "Allow"
-    ip_rules       = []
-  }
-
-  tags = {}
-}
-
-resource "azurerm_cognitive_deployment" "gpt4_deployment" {
-  name                = "gpt-4o"
-  cognitive_account_id = azurerm_cognitive_account.openai.id
-  model {
-    format  = "OpenAI"
-    name    = "gpt-4o"
-    version = "2024-11-20"
-  }
-  sku {
-    name = "GlobalStandard"
-    capacity = 10
-  }
-  dynamic_throttling_enabled = false
-  rai_policy_name            = "Microsoft.DefaultV2"
+module "azurerm_cognitive_account" {
+    source = "./modules/azure_openai_studio"
+    resource_group_name = var.resource_group_name
+    location = var.location
+    azure_openai_studio_name = "azureaistudiotest543"
+    model_name = "gpt-4o"
+    model_resource_name = "gpt-4o"
 }
 
