@@ -12,7 +12,7 @@ provider "azurerm" {
 
   subscription_id = var.SUBSCRIPTION_ID
   client_id       = var.CLIENT_ID
-  tenant_id       = var.tenant_id
+  tenant_id       = var.TENANT_ID
 }
 
 resource "azurerm_resource_group" "rg" {
